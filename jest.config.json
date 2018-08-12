@@ -1,0 +1,7 @@
+{
+  "setupTestFrameworkScriptFile": "<rootDir>/public/src/tests/testConfig.js",
+  "bail": true,
+  "verbose": true,
+  "testEnvironment": "node"
+
+}
