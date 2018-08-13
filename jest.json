@@ -1,6 +1,7 @@
 {
   "setupTestFrameworkScriptFile": "<rootDir>/public/src/tests/testConfig.js",
+  "setupFiles":["raf/polyfill"],
   "bail": true,
   "verbose": true,
-  "testEnvironment": "node"
-}
+  "testEnvironment": "node",
+  "snapshotSerializers": ["enzyme-to-json/serializer"]}

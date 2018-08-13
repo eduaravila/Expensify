@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Nav component Nav 1`] = `
+<div>
+  <ul>
+    <li>
+      <Link
+        replace={false}
+        to="/"
+      >
+         inicio 
+      </Link>
+    </li>
+    <li>
+      <Link
+        replace={false}
+        to="/add-expense"
+      >
+        Nuevo expense
+      </Link>
+    </li>
+    <li>
+      <Link
+        replace={false}
+        to="/help"
+      >
+         ayuda 
+      </Link>
+    </li>
+  </ul>
+</div>
+`;

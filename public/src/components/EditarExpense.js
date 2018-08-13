@@ -2,7 +2,7 @@ import React from "react";
 import FormularioExpense from "./FormularioExpense";
 import { editarTodo, eliminarTodo } from "./../reducer/actions/todos";
 import { connect } from "react-redux";
-const EditarExpense = ({ expense, guardar, eliminar }) => (
+export const EditarExpense = ({ expense, guardar, eliminar }) => (
   <div>
     <h1>Editar Expense</h1>
     <FormularioExpense expense={expense} guardar={guardar} />

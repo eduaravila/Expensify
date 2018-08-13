@@ -5,14 +5,18 @@ import { TodosVisibles } from "./../reducer/selectors/visibles";
 import { eliminarTodo } from "./../reducer/actions/todos";
 import { Expense } from "./Expense";
 import { dispatch } from "rxjs/internal/observable/range";
-const ListaExpenses = ({ todos, func }) => (
+export const ListaExpenses = ({ todos, func }) => (
   <div>
     <h1>Expenses</h1>
-    <ul>
-      {todos.map(i => (
-        <Expense key={i.id} {...i} func={func} />
-      ))}
-    </ul>
+    {todos ? (
+      <ul>
+        {todos.map(i => (
+          <Expense key={i.id} {...i} func={func} />
+        ))}
+      </ul>
+    ) : (
+      <h1>No hay expenses</h1>
+    )}
   </div>
 );
 

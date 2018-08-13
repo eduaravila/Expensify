@@ -2,7 +2,8 @@ import "react-dates/initialize";
 import React, { Component } from "react";
 import { SingleDatePicker } from "react-dates";
 import moment from "moment";
-import "react-dates/lib/css/_datepicker.css";
+//import 'react-dates/lib/css/_datepicker.css'; 
+
 import { connect } from "react-redux";
 export default class FormularioExpense extends Component {
   constructor(props) {
@@ -10,24 +11,23 @@ export default class FormularioExpense extends Component {
 
     this.state = {
       nombre: this.props.expense ? this.props.expense.nombre : "",
-      monto: props.expense ? (props.expense.monto / 100).toString() : "",
+      monto: props.expense ? (props.expense.monto / 100).toString() : "1",
       creadoEl: props.expense ? moment(props.expense.creadoEl) : moment(),
       calendarFocus: false,
       error: "",
       descripcion: props.expense ? props.expense.descripcion : ""
     };
   }
-
-  onMontoChange = e => {
-    let monto = e.target.value;
-    if (!e.target.value || e.target.value.match(/^\d{1,}\.?\d{0,2}?$/)) {
-      this.setState(() => ({ monto }));
-    }
-  };
-
   onDateChange = creadoEl => {
     if (creadoEl) {
       this.setState(() => ({ creadoEl }));
+    }
+
+  };
+  onMontoChange = e => {
+    let monto = e.target.value;
+    if (!e.target.value || String(e.target.value).match(/^\d{1,}\.?\d{0,2}?$/)) {
+      this.setState(() => ({ monto }));
     }
   };
   onFocusChange = ({ focused }) => {

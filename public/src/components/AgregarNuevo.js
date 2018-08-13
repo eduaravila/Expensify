@@ -1,19 +1,24 @@
 import React from "react";
 import FormularioExpense from "./FormularioExpense";
 import { store } from "./../reducer/store";
+import { connect } from "react-redux";
 import { agregarTodo } from "./../reducer/actions/todos";
-const AgregarNuevo = props => {
+export const AgregarNuevo = ({ guardar }) => {
   return (
     <div>
       <h1>Agregar nuevo Expense</h1>
-      <FormularioExpense
-        guardar={info => {
-          store.dispatch(agregarTodo(info));
-          props.history.push("/");
-        }}
-      />
+      <FormularioExpense guardar={guardar} />
     </div>
   );
 };
 
-export default AgregarNuevo;
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  guardar: info => {
+    dispatch(agregarTodo(info));
+    ownProps.history.push("/");
+  }
+});
+export default connect(
+  undefined,
+  mapDispatchToProps
+)(AgregarNuevo);

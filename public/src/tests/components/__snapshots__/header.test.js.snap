@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`COMPONETS header header 1`] = `
+<div>
+  <h1>
+    Titulo chido
+  </h1>
+</div>
+`;

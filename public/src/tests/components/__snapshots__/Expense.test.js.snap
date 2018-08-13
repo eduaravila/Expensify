@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Expense Snapshot expense  1`] = `
+<li>
+  <Link
+    replace={false}
+    to="/editar/1"
+  >
+    <h1>
+       
+      Afro
+       
+    </h1>
+  </Link>
+  <p>
+    Algo perron
+  </p>
+  <button
+    onClick={[Function]}
+  >
+    Eliminar
+  </button>
+</li>
+`;
+
+exports[`Expense Snapshot expense vacio 1`] = `
+<li>
+  <Link
+    replace={false}
+    to="/editar/undefined"
+  >
+    <h1>
+       
+       
+    </h1>
+  </Link>
+  <p />
+  <button
+    onClick={[Function]}
+  >
+    Eliminar
+  </button>
+</li>
+`;
