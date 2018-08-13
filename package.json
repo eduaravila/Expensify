@@ -41,7 +41,7 @@
     "webpack-cli": "^3.1.0"
   },
   "scripts": {
-    "test": "jest --config=jest.config.json",
+    "test": "jest --config=jest.json",
     "build": "webpack --watch",
     "liveS": "webpack-dev-server"
   },

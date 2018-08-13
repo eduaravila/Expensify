@@ -1,7 +1,7 @@
 import uuidv1 from "uuid/v1";
 
 export const agregarTodo = ({
-  descripcion = " ",
+  descripcion = "",
   monto = 0,
   creadoEl = 0,
   nombre = ""
