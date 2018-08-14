@@ -10,7 +10,7 @@ import {
   cambiarFechaInicio,
   cambiarFechaFin
 } from "./../reducer/actions/filtro";
-class FiltroTexto extends Component {
+export class FiltroTexto extends Component {
   state = { focusedInput: null };
   onFocusChange = focusedInput => {
     this.setState(() => ({ focusedInput }));
@@ -22,7 +22,7 @@ class FiltroTexto extends Component {
           type="text"
           value={this.props.texto}
           ref={e => (this.input = e)}
-          onChange={() => this.props.func(this.input.value)}
+          onChange={e => this.props.func(e.target.value)}
         />
         <select onChange={e => this.props.ordenarPor(e.target.value)}>
           <option value="monto">Monto</option>
@@ -30,9 +30,9 @@ class FiltroTexto extends Component {
         </select>
         <DateRangePicker
           startDate={this.props.inicio}
-          startDateId={uuidv1()}
+          startDateId={"a"}
           endDate={this.props.fin}
-          endDateId={uuidv1()}
+          endDateId={"b"}
           onDatesChange={({ startDate, endDate }) => {
             this.props.actualizaInicio(startDate);
             this.props.actualizaFin(endDate);
