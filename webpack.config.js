@@ -11,7 +11,7 @@ module.exports = function(env, argv) {
     mode: produccion ? "production" : "development",
     entry: "./public/src/expensify.js",
     output: {
-      path: path.join(__dirname, "public/"),
+      path: path.join(__dirname, "public/compiled/"),
 
       filename: "bundle.js",
       publicPath: "/"
@@ -38,7 +38,8 @@ module.exports = function(env, argv) {
     },
     devtool: produccion ? "source-map" : "inline-source-map",
     devServer: {
-      contentBase: path.join(__dirname, "public/"),
+      contentBase: path.join(__dirname, "public/compiled/"),
+      publicPath: "/compiled/",
       historyApiFallback: true
     },
     plugins: [
