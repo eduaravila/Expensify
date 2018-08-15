@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Sumar expenses filtrados Snapshot 1`] = `
+<div>
+  <h1>
+    Expenses seleccionadas 
+    9
+     total de
+     
+    $1.00
+  </h1>
+</div>
+`;
