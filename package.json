@@ -56,7 +56,7 @@
     "test": "jest --config=jest.json",
     "build:dev": "webpack",
     "build:prod": "webpack -p --env prod",
-    "liveS": "webpack-dev-server",
+    "liveS": "webpack-dev-server --watch",
     "start": "node server/server.js",
     "liveSD": "webpack-dashboard -- webpack-dev-server",
     "heroku-postbuild": "yarn run build:prod"

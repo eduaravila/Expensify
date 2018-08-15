@@ -2,6 +2,7 @@
 
 exports[`Lista sin propiedades Listado con propiedades 1`] = `
 <div>
+  <Connect(SumaTotal) />
   <h1>
     Expenses
   </h1>
@@ -13,6 +14,7 @@ exports[`Lista sin propiedades Listado con propiedades 1`] = `
 
 exports[`Lista sin propiedades Listado con propiedades 2`] = `
 <div>
+  <Connect(SumaTotal) />
   <h1>
     Expenses
   </h1>
