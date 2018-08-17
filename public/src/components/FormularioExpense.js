@@ -2,7 +2,7 @@ import "react-dates/initialize";
 import React, { Component } from "react";
 import { SingleDatePicker } from "react-dates";
 import moment from "moment";
-// import 'react-dates/lib/css/_datepicker.css'; // ! remover modo test JEST 
+import 'react-dates/lib/css/_datepicker.css'; // ! remover modo test JEST 
 
 import { connect } from "react-redux";
 export default class FormularioExpense extends Component {
