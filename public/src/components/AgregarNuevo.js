@@ -2,7 +2,7 @@ import React from "react";
 import FormularioExpense from "./FormularioExpense";
 import { store } from "./../reducer/store";
 import { connect } from "react-redux";
-import { agregarTodo } from "./../reducer/actions/todos";
+import { agregarTodoAsync } from "./../reducer/actions/todos";
 export const AgregarNuevo = ({ guardar }) => {
   return (
     <div>
@@ -14,7 +14,7 @@ export const AgregarNuevo = ({ guardar }) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   guardar: info => {
-    dispatch(agregarTodo(info));
+    dispatch(agregarTodoAsync(info));
     ownProps.history.push("/");
   }
 });

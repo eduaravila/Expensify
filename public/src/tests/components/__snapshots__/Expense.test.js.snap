@@ -19,7 +19,7 @@ exports[`Expense Snapshot expense  1`] = `
     7th Jan 1970
   </p>
   <p>
-    $100.00
+    $1.00
   </p>
   <button
     onClick={[Function]}

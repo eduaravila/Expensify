@@ -6,7 +6,7 @@ import { filtrarTexto, filtrarPorMonto } from "./reducer/actions/filtro";
 import { TodosVisibles } from "./reducer/selectors/visibles";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
-
+import "./firebase/firebase";
 import Rutas from "./routes/appRutas";
 
 store.dispatch(
