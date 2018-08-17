@@ -1,6 +1,6 @@
 {
   "setupTestFrameworkScriptFile": "<rootDir>/public/src/tests/testConfig.js",
-  "setupFiles":["raf/polyfill"],
+  "setupFiles":["raf/polyfill","<rootDir>/public/src/tests/testConfig.js"],
   "bail": true,
   "verbose": true,
   "testEnvironment": "node",
