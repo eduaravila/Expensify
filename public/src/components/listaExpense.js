@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 
 import { TodosVisibles } from "./../reducer/selectors/visibles";
-import { eliminarTodo } from "./../reducer/actions/todos";
+import { eliminarTodoSync } from "./../reducer/actions/todos";
 import { Expense } from "./Expense";
 import { dispatch } from "rxjs/internal/observable/range";
 import SumaTotal from "./totalExpenses";
@@ -28,7 +28,7 @@ const mapStateToProps = state => ({
 });
 const mapDispatchToProps = dispatch => ({
   func: id => {
-    dispatch(eliminarTodo({ id }));
+    dispatch(eliminarTodoSync({ id }));
   }
 });
 

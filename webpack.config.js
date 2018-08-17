@@ -46,7 +46,7 @@ module.exports = function(env, argv) {
     },
     devtool: produccion ? "source-map" : "inline-source-map",
     devServer: {
-      contentBase: path.join(__dirname, "public/"),
+      contentBase: path.join(__dirname, "public"),
       publicPath: "/compiled/",
       historyApiFallback: true
     },

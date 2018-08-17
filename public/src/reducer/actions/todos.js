@@ -26,8 +26,59 @@ export const eliminarTodo = ({ id } = {}) => ({
   id
 });
 
+export const eliminarTodoSync = ({ id } = {}) => {
+  return dispatch => {
+    return baseDatos
+      .ref(`expenses/${id}`)
+      .remove()
+      .then(result => {
+        dispatch(eliminarTodo({ id }));
+      });
+  };
+};
 export const editarTodo = ({ id, propiedades = {} } = {}) => ({
   type: "EDIT-TODO",
   id,
   propiedades
 });
+
+export const editarTodoSync = ({ id, propiedades = {} } = {}) => {
+  const { nombre, monto, descripcion, creadoEl } = propiedades;
+  return async dispatch => {
+    try {
+      await baseDatos
+        .ref(`expenses/${id}`)
+        .update({ nombre, monto, descripcion, creadoEl });
+
+      return dispatch(
+        editarTodo({
+          id,
+          propiedades: { nombre, monto, descripcion, creadoEl }
+        })
+      );
+    } catch (e) {
+      return dispatch(editarTodo({}));
+    }
+  };
+};
+// ? set TODOS
+
+export const setTodos = todos => ({
+  type: "SET-TODOS",
+  todos
+});
+
+export const setTodosSync = () => {
+  return async dispatch => {
+    try {
+      let datos = await baseDatos.ref("expenses").once("value");
+      let expenses = [];
+      datos.forEach(expense => {
+        expenses = [...expenses, { ...expense.val(), id: expense.key }];
+      });
+      return dispatch(setTodos(expenses));
+    } catch (e) {
+      return dispatch(setTodos([]));
+    }
+  };
+};

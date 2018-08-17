@@ -20,7 +20,7 @@ exports[`Lista sin propiedades Listado con propiedades 2`] = `
   </h1>
   <ul>
     <Expense
-      creadoEl={"1970-01-08T00:00:00.000Z"}
+      creadoEl={604800000}
       descripcion="Algo perron"
       id="1"
       key="1"
@@ -28,7 +28,7 @@ exports[`Lista sin propiedades Listado con propiedades 2`] = `
       nombre="Afro"
     />
     <Expense
-      creadoEl={"1969-12-25T00:00:00.000Z"}
+      creadoEl={-604800000}
       descripcion="GG izi"
       id="2"
       key="2"
@@ -36,7 +36,7 @@ exports[`Lista sin propiedades Listado con propiedades 2`] = `
       nombre="Poky"
     />
     <Expense
-      creadoEl={"1970-01-01T00:00:00.000Z"}
+      creadoEl={0}
       descripcion="Algo chido"
       id="3"
       key="3"

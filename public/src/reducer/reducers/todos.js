@@ -10,7 +10,8 @@ export default (array = [], accion) => {
       return array.map(
         i => (i.id === accion.id ? { ...i, ...accion.propiedades } : i)
       );
-
+    case "SET-TODOS":
+      return accion.todos
     default:
       return array;
   }

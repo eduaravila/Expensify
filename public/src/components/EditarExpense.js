@@ -1,6 +1,11 @@
 import React from "react";
 import FormularioExpense from "./FormularioExpense";
-import { editarTodo, eliminarTodo } from "./../reducer/actions/todos";
+import {
+  editarTodo,
+  eliminarTodo,
+  editarTodoSync,
+  eliminarTodoSync
+} from "./../reducer/actions/todos";
 import { connect } from "react-redux";
 export const EditarExpense = ({ expense, guardar, eliminar }) => (
   <div>
@@ -18,7 +23,7 @@ const mapStateToProps = (state, ownProps) => ({
 const mapDispatchToProps = (dispatch, ownProps) => ({
   guardar: nuevasProps => {
     dispatch(
-      editarTodo({
+      editarTodoSync({
         id: ownProps.match.params.id,
         propiedades: { ...nuevasProps }
       })
@@ -26,7 +31,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     ownProps.history.push("/");
   },
   eliminar: () => {
-    dispatch(eliminarTodo({ id: ownProps.match.params.id }));
+    dispatch(eliminarTodoSync({ id: ownProps.match.params.id }));
     ownProps.history.push("/");
   }
 });
