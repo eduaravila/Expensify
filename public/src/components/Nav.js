@@ -1,7 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import {logoutconGoogle} from '../reducer/actions/auth'
+import {connect} from 'react-redux';
 
-const Nav = () => (
+export const Nav = ({logOut}) => (
   <div>
     <ul>
       <li>
@@ -14,7 +16,17 @@ const Nav = () => (
       <Link to='/help'> ayuda </Link>
       </li>
     </ul>
+    <button onClick={logOut}>Log out</button>
   </div>
 );
 
-export default Nav;
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    logOut: () => {
+      dispatch(logoutconGoogle());
+    }
+  }
+}
+export default connect(undefined,mapDispatchToProps)(Nav)
+

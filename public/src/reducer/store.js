@@ -1,10 +1,12 @@
-import { combineReducers, createStore, compose, applyMiddleware } from "redux";
 import Filtro from "./reducers/filtro";
 import Todos from "./reducers/todos";
-import thunk from "redux-thunk";
+import Auth from "./reducers/auth";
 
-const composeEnhancers = compose; 
-const Reducer = combineReducers({ Todos, Filtro });
+import thunk from "redux-thunk";
+import { combineReducers, createStore, compose, applyMiddleware } from "redux";
+
+const composeEnhancers =compose;
+const Reducer = combineReducers({ Todos, Filtro, Auth });
 export const store = createStore(
   Reducer,
   composeEnhancers(applyMiddleware(thunk))
