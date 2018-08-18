@@ -28,5 +28,8 @@ exports[`Nav component Nav 1`] = `
       </Link>
     </li>
   </ul>
+  <button>
+    Log out
+  </button>
 </div>
 `;

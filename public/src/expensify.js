@@ -12,7 +12,12 @@ import Rutas from "./routes/appRutas";
 export const history = createHistory(); // ? Exporta el historial a toda la aplicion para que todos puedan manipularlo
 
 let renderizado = false;
-
+ReactDom.render(
+  <Provider store={store}>
+    <Rutas />
+  </Provider>,
+  document.getElementById("titulo")
+);
 const poblarApp = () => {
   if (!renderizado) {
     ReactDom.render(

@@ -10,6 +10,8 @@ import Header from "./../components/Header";
 import AgregarNuevo from "./../components/AgregarNuevo";
 import EditarExpense from "./../components/EditarExpense";
 import { history } from "../expensify";
+import PrivateRoute from "./privateRoute";
+
 const Rutas = () => (
   <Router history={history}>
     <div>
@@ -17,10 +19,10 @@ const Rutas = () => (
       <Nav />
       <Switch>
         <Route path="/" component={Login} exact />
-        <Route path="/expenses" component={Expenses} />
-        <Route path="/help" component={Help} />
-        <Route path="/add-expense" component={AgregarNuevo} />
-        <Route path="/editar/:id" component={EditarExpense} />
+        <PrivateRoute path="/expenses" component={Expenses} />
+        <PrivateRoute path="/help" component={Help} />
+        <PrivateRoute path="/add-expense" component={AgregarNuevo} />
+        <PrivateRoute path="/editar/:id" component={EditarExpense} />
         <Route component={Error} />
       </Switch>
     </div>
