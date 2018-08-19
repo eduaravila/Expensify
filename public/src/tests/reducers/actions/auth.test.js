@@ -15,13 +15,5 @@ describe("AUTH reducer actions", () => {
     expect(logOut()).toEqual({ type: "LOGOUT" });
   });
   
-  test("ingresar con google ", done => {
-    ingresarConGoogle();
-    firebase.auth().onAuthStateChanged(user => {
-      if (user) {
-        expect(user).toEqual(true);
-        done()
-      }
-    });
-  });
+ 
 });

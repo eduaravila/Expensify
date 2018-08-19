@@ -12,9 +12,10 @@ export const agregarTodo = expense => ({
 export const agregarTodoAsync = (info = {}) => {
   const { nombre = "", monto = 0, creadoEl = 0, descripcion = "" } = info;
   const expense = { nombre, monto, creadoEl, descripcion };
-  return dispatch => {
+  return (dispatch, getState) => {
+    let uuid = getState().Auth.uuid;
     return baseDatos
-      .ref("expenses")
+      .ref(`users/${uuid}/expenses/`)
       .push(expense)
       .then(result => {
         dispatch(agregarTodo({ ...expense, id: result.key }));
@@ -27,9 +28,10 @@ export const eliminarTodo = ({ id } = {}) => ({
 });
 
 export const eliminarTodoSync = ({ id } = {}) => {
-  return dispatch => {
+  return (dispatch, getState) => {
+    let uuid = getState().Auth.uuid;
     return baseDatos
-      .ref(`expenses/${id}`)
+      .ref(`users/${uuid}/expenses/${id}`)
       .remove()
       .then(result => {
         dispatch(eliminarTodo({ id }));
@@ -44,10 +46,12 @@ export const editarTodo = ({ id, propiedades = {} } = {}) => ({
 
 export const editarTodoSync = ({ id, propiedades = {} } = {}) => {
   const { nombre, monto, descripcion, creadoEl } = propiedades;
-  return async dispatch => {
+  return async (dispatch, getState) => {
     try {
+      let uuid = getState().Auth.uuid;
+
       await baseDatos
-        .ref(`expenses/${id}`)
+        .ref(`users/${uuid}/expenses/${id}`)
         .update({ nombre, monto, descripcion, creadoEl });
 
       return dispatch(
@@ -69,16 +73,24 @@ export const setTodos = todos => ({
 });
 
 export const setTodosSync = () => {
-  return async dispatch => {
-    try {
-      let datos = await baseDatos.ref("expenses").once("value");
-      let expenses = [];
-      datos.forEach(expense => {
-        expenses = [...expenses, { ...expense.val(), id: expense.key }];
+  return (dispatch, getState) => {
+    let uuid = getState().Auth.uuid;
+    console.log(uuid);
+    return baseDatos
+      .ref(`users/${uuid}/expenses/`)
+      .once("value")
+      .then(datos => {
+        console.log(datos.val());
+
+        let expenses = [];
+        datos.forEach(expense => {
+          expenses = [...expenses, { ...expense.val(), id: expense.key }];
+        });
+        dispatch(setTodos(expenses));
+        console.log("HOLAAAA de nuevo bien ");
+      })
+      .catch(err => {
+        console.log("HOLAAAA de nuevo");
       });
-      return dispatch(setTodos(expenses));
-    } catch (e) {
-      return dispatch(setTodos([]));
-    }
   };
 };

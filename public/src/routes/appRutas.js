@@ -11,6 +11,7 @@ import AgregarNuevo from "./../components/AgregarNuevo";
 import EditarExpense from "./../components/EditarExpense";
 import { history } from "../expensify";
 import PrivateRoute from "./privateRoute";
+import PublicRoute from './publicRoute';
 
 const Rutas = () => (
   <Router history={history}>
@@ -18,12 +19,12 @@ const Rutas = () => (
       <Header />
       <Nav />
       <Switch>
-        <Route path="/" component={Login} exact />
+        <PublicRoute path="/" component={Login} exact />
         <PrivateRoute path="/expenses" component={Expenses} />
         <PrivateRoute path="/help" component={Help} />
         <PrivateRoute path="/add-expense" component={AgregarNuevo} />
         <PrivateRoute path="/editar/:id" component={EditarExpense} />
-        <Route component={Error} />
+        <PublicRoute component={Error} />
       </Switch>
     </div>
   </Router>

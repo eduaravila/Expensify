@@ -12,12 +12,8 @@ import Rutas from "./routes/appRutas";
 export const history = createHistory(); // ? Exporta el historial a toda la aplicion para que todos puedan manipularlo
 
 let renderizado = false;
-ReactDom.render(
-  <Provider store={store}>
-    <Rutas />
-  </Provider>,
-  document.getElementById("titulo")
-);
+ReactDom.render(<h1>Cargando....</h1>, document.getElementById("titulo"));
+
 const poblarApp = () => {
   if (!renderizado) {
     ReactDom.render(
@@ -34,9 +30,11 @@ firebase.auth().onAuthStateChanged(result => {
   if (result) {
     (async () => {
       try {
+        store.dispatch(login(result.uid));
+
         await store.dispatch(setTodosSync());
         poblarApp();
-        store.dispatch(login(result.uid));
+        console.log(store.getState());
         history.push("/expenses");
       } catch (e) {
         console.log(e);

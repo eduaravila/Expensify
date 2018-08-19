@@ -5,8 +5,8 @@ import {
   agregarTodoAsync,
   setTodos,
   setTodosSync,
-  editarTodoSync
-  ,eliminarTodoSync
+  editarTodoSync,
+  eliminarTodoSync
 } from "../../../reducer/actions/todos";
 import TODOS from "../../../reducer/reducers/todos";
 
@@ -20,12 +20,13 @@ import expenses from "../../fixtures/expenses";
 jest.setTimeout(30000);
 
 beforeEach(done => {
+  let id = "5555";
   const misExpenses = [];
   expenses.forEach(({ id, nombre, descripcion, creadoEl, monto }) => {
     misExpenses[id] = { nombre, descripcion, creadoEl, monto };
   });
   baseDatos
-    .ref("expenses")
+    .ref(`users/${id}/expenses`)
     .set(misExpenses)
     .then(() => done());
 });
@@ -53,8 +54,9 @@ describe("ACCIONES TODOS >>>>", () => {
       propiedades: { ...expenses[0] }
     });
   });
+
   test("Guardar expense en base de datos", done => {
-    const store = middle({});
+    const store = middle({ Auth: { uuid: "FFFF" } });
     const expense = {
       nombre: "Afro",
       descripcion: "Algo perron",
@@ -69,7 +71,7 @@ describe("ACCIONES TODOS >>>>", () => {
       });
 
       return baseDatos
-        .ref(`expenses/${acciones[0].expense.id}`)
+        .ref(`users/FFFF/expenses/${acciones[0].expense.id}`)
         .once("value")
         .then(result => {
           expect(result.val()).toEqual(expense);
@@ -77,8 +79,9 @@ describe("ACCIONES TODOS >>>>", () => {
         });
     });
   });
+
   test("Guardar expense vacio", done => {
-    const store = middle({});
+    const store = middle({ Auth: { uuid: "FFFF" } });
 
     store.dispatch(agregarTodoAsync()).then(result => {
       const acciones = store.getActions();
@@ -92,6 +95,7 @@ describe("ACCIONES TODOS >>>>", () => {
       done();
     });
   });
+
   test("Set todos ", () => {
     const final = expenses;
 
@@ -105,7 +109,7 @@ describe("ACCIONES TODOS >>>>", () => {
     expect(TODOS(expenses, { todos: expenses })).toEqual(expenses);
   });
   test("Retornar los EXPENSES de la base de datos", done => {
-    const store = middle({});
+    const store = middle({ Auth: { uuid: "5555" } });
     store.dispatch(setTodosSync()).then(result => {
       let acciones = store.getActions();
       expect(acciones[0]).toEqual({
@@ -116,7 +120,7 @@ describe("ACCIONES TODOS >>>>", () => {
     });
   });
   test("Editar TODOS SYNC y guardar en base de datos", done => {
-    const store = middle({});
+    const store = middle({ Auth: { uuid: "FFFF" } });
     let final = { id: 3, propiedades: { ...expenses[0] } };
     const { nombre, monto, descripcion, creadoEl } = expenses[0];
     store.dispatch(editarTodoSync(final)).then(result => {
@@ -131,10 +135,10 @@ describe("ACCIONES TODOS >>>>", () => {
   });
 
   test("Eliminar todos de la base de datos", done => {
-    const store = middle({});
-    let final = { id: 3,type:'DEL-TODO'};
-    
-    store.dispatch(eliminarTodoSync({id:3})).then(result => {
+    const store = middle({ Auth: { uuid: "FFFF" } });
+    let final = { id: 3, type: "DEL-TODO" };
+
+    store.dispatch(eliminarTodoSync({ id: 3 })).then(result => {
       let estados = store.getActions();
       expect(estados[0]).toEqual(final);
       done();
